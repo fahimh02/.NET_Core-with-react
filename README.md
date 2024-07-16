@@ -1,69 +1,48 @@
 
-# Zoco ASPNET Crud
 
-Este repositorio alberga una aplicación web para gestionar productos y categorías utilizando React.js en el frontend y ASP.NET Core 6 en el backend. Incluye autenticación JWT con control de acceso basado en roles para administradores y usuarios regulares.
+ASPNET Crud
+This repository hosts a web application to manage products and categories using React.js on the frontend and ASP.NET Core 6 on the backend. Includes JWT authentication with role-based access control for administrators and regular users.
 
-## Estructura del Repositorio
+Repository Structure
+Zocoapi
 
-- **Zocoapi**
-  - `Zocoapi.server`: Backend construido con .NET 6.0, C#, SQL SERVER.
-  
-- **ZocoFrontend**
-  - Raíz del proyecto frontend construido con Vite, React, y TypeScript.
+Zocoapi.server: Backend built with .NET 6.0, C#, SQL SERVER.
+ZocoFrontend
 
-## Instalación
+Root frontend project built with Vite, React, and TypeScript.
+Facility
+Zocoapi
+Go to the folder:
 
-### Zocoapi
+CD Zocoapi
+Install dependencies: Make sure you have .NET 6.0 installed.
 
-1. **Dirigirnos a la carpeta:**
-   ```bash
-   cd Zocoapi
-   ```
+cd Zocoapi.server
+dotnet restore
+dotnet build
+Database configuration:
 
-2. **Instalar las dependencias:**
-   Asegúrate de tener .NET 6.0 instalado.
-   ```bash
-   cd Zocoapi.server
-   dotnet restore
-   dotnet build   
-   ```
-   
-3. **Configuración de la base de datos:**
-   ```bash
-   Ejecuta el contenido de SCRIPT SQL.txt que está en la raiz de este repositorio en tu SQL SERVER 
-   ```
-   
-4. **Configuración del entorno:**
-   ```bash
-   cd Zocoapi.server
-   Configura el appsettings.json y colca tu url de tu base de datos sql server  
-   ```
-   
-5. **Ejecutar la aplicación:**
-   ```bash
-   dotnet run
-   ```
-   La aplicación estará disponible en `http://localhost:3000`.
+Execute the content of SCRIPT SQL.txt that is at the root of this repository in your SQL SERVER
+Environment configuration:
 
-### ZocoFrontend
+cd Zocoapi.server
+Configure the appsettings.json and enter your URL of your SQL Server database
+Run the application:
 
-1. **Dirigirnos a la carpeta:**
-   ```bash
-   cd ZocoFrontend
-   ```
+dotnet run
+The application will be available at http://localhost:3000.
 
-2. **Instalar las dependencias:**
-   Asegúrate de tener Node.js y npm instalados.
-   ```bash
-   npm install
-   ```
-   
-3. **Compilar y ejecutar el servidor de desarrollo:**
-   ```bash
-   npm run dev
-   ```
-   El servidor de desarrollo estará disponible en `http://localhost:5173`.
+ZocoFrontend
+Go to the folder:
 
+cd ZocoFrontend
+Install dependencies: Make sure you have Node.js and npm installed.
+
+npm install
+Compile and run the development server:
+
+npm run dev
+The development server will be available at http://localhost:5173.
 
 
 
