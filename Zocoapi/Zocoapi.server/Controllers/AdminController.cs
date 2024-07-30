@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Product.Server.Models;
 using Zocoapi.server.Models;
@@ -7,6 +8,7 @@ namespace Zocoapi.server.Controllers
 {
     [Route("api/admin")]
     [ApiController]
+    //[Authorize(Roles = "admin")]
     public class AdminController : ControllerBase
     {
         private readonly StitchInfoContext _context;
@@ -150,6 +152,7 @@ namespace Zocoapi.server.Controllers
 
         // GET: api/admin/contribution
         [HttpGet("contribution")]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Contribution>>> GetContributions()
         {
             try
@@ -166,6 +169,7 @@ namespace Zocoapi.server.Controllers
 
         // GET: api/admin/contribution/5
         [HttpGet("contribution/{id}")]
+        [Authorize]
         public async Task<ActionResult<Contribution>> GetContributions(long id)
         {
             var stitchInfo = await _contriibutionContext.Contributions.FindAsync(id);
@@ -180,6 +184,7 @@ namespace Zocoapi.server.Controllers
 
         // POST: api/admin/contribution
         [HttpPost("contribution")]
+        [Authorize]
         public async Task<ActionResult<Contribution>> PostContribution(Contribution stitchInfo)
         {
             try
