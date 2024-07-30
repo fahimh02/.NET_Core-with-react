@@ -10,11 +10,13 @@ namespace Zocoapi.server.Controllers
     {
         private readonly StitchInfoContext _context;
         private readonly ContributionContext _contriibutionContext;
+        private readonly ArticleInfoContext _articleInfoContext;
 
-        public AdminController(StitchInfoContext context, ContributionContext contriibutionContext)
+        public AdminController(StitchInfoContext context, ContributionContext contriibutionContext, ArticleInfoContext articleInfoContext )
         {
             _context = context;
             _contriibutionContext = contriibutionContext;
+            _articleInfoContext = articleInfoContext;
         }
 
 
@@ -186,7 +188,7 @@ namespace Zocoapi.server.Controllers
                 stitchInfo.AuthorId = 1;// DateTime.Now;
                 stitchInfo.EditorId = 1;// DateTime.Now;
                 _contriibutionContext.Contributions.Add(stitchInfo);
-                await _context.SaveChangesAsync();
+                await _contriibutionContext.SaveChangesAsync();
 
                 return CreatedAtAction(nameof(GetContributions), new { id = stitchInfo.Id }, stitchInfo);
 
@@ -213,11 +215,11 @@ namespace Zocoapi.server.Controllers
 
                 try
                 {
-                    await _context.SaveChangesAsync();
+                    await _contriibutionContext.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StichInfoExists(id))
+                    if (!ContributionExists(id))
                     {
                         return NotFound();
                     }
@@ -249,7 +251,7 @@ namespace Zocoapi.server.Controllers
                 }
 
                 _contriibutionContext.Contributions.Remove(stitchInfo);
-                await _context.SaveChangesAsync();
+                await _contriibutionContext.SaveChangesAsync();
 
                 return NoContent();
             }
@@ -263,6 +265,129 @@ namespace Zocoapi.server.Controllers
         {
             return _contriibutionContext.Contributions.Any(e => e.Id == id);
         }
+
+        #endregion
+
+        #region ArticleInfo
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<ArticleInfo>>> GetArticleInfos()
+        {
+            try
+            {
+                return await _articleInfoContext.ArticleInfos.ToListAsync();
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+        // GET: api/Category/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ArticleInfo>> GetArticleInfos(long id)
+        {
+            var stitchInfo = await _articleInfoContext.ArticleInfos.FindAsync(id);
+
+            if (stitchInfo == null)
+            {
+                return NotFound();
+            }
+
+            return stitchInfo;
+        }
+
+        // POST: api/Category
+        [HttpPost]
+        public async Task<ActionResult<Contribution>> PostArticleInfo(ArticleInfo stitchInfo)
+        {
+            try
+            {
+                stitchInfo.Created = DateTime.Now;
+                stitchInfo.Modified = DateTime.Now;
+                stitchInfo.AuthorId = 1;// DateTime.Now;
+                stitchInfo.EditorId = 1;// DateTime.Now;
+                _articleInfoContext.ArticleInfos.Add(stitchInfo);
+                await _articleInfoContext.SaveChangesAsync();
+
+                return CreatedAtAction(nameof(GetArticleInfos), new { id = stitchInfo.Id }, stitchInfo);
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+        // PUT: api/Category/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutArticleInfo(long id, ArticleInfo stitchInfo)
+        {
+            try
+            {
+                if (id != stitchInfo.Id)
+                {
+                    return BadRequest();
+                }
+
+                _articleInfoContext.Entry(stitchInfo).State = EntityState.Modified;
+
+                try
+                {
+                    await _articleInfoContext.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ArticleInfoExists(id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+
+                return NoContent();
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        // DELETE: api/Category/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteArticleInfo(long id)
+        {
+            try
+            {
+                var stitchInfo = await _articleInfoContext.ArticleInfos.FindAsync(id);
+                if (stitchInfo == null)
+                {
+                    return NotFound();
+                }
+
+                _articleInfoContext.ArticleInfos.Remove(stitchInfo);
+                await _articleInfoContext.SaveChangesAsync();
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        private bool ArticleInfoExists(long id)
+        {
+            return _articleInfoContext.ArticleInfos.Any(e => e.Id == id);
+        }
+
         #endregion
     }
 }
