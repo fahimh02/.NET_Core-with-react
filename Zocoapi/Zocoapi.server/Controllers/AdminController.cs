@@ -5,8 +5,9 @@ using Zocoapi.server.Models;
 
 namespace Zocoapi.server.Controllers
 {
-    [Route("api/[controller]")]
-    public class AdminController : Controller
+    [Route("api/admin")]
+    [ApiController]
+    public class AdminController : ControllerBase
     {
         private readonly StitchInfoContext _context;
         private readonly ContributionContext _contriibutionContext;
@@ -21,9 +22,8 @@ namespace Zocoapi.server.Controllers
 
 
         #region StitchInfo
-        // GET: api/StitchInfo
-
-        [HttpGet]
+        // GET: api/admin/stitchinfo
+        [HttpGet("stitchinfo")]
         public async Task<ActionResult<IEnumerable<StitchInfo>>> GetStitchInfos()
         {
             try
@@ -38,8 +38,8 @@ namespace Zocoapi.server.Controllers
            
         }
 
-        // GET: api/Category/5
-        [HttpGet("{id}")]
+        // GET: api/admin/stitchinfo/5
+        [HttpGet("stitchinfo/{id}")]
         public async Task<ActionResult<StitchInfo>> GetStitchInfo(long id)
         {
             var stitchInfo = await _context.StitchInfos.FindAsync(id);
@@ -52,8 +52,8 @@ namespace Zocoapi.server.Controllers
             return stitchInfo;
         }
 
-        // POST: api/Category
-        [HttpPost]
+        // POST: api/admin/stitchinfo
+        [HttpPost("stitchinfo")]
         public async Task<ActionResult<StitchInfo>> PostStitchInfo(StitchInfo stitchInfo)
         {
             try
@@ -74,8 +74,8 @@ namespace Zocoapi.server.Controllers
             
         }
 
-        // PUT: api/Category/5
-        [HttpPut("{id}")]
+        // PUT: api/admin/stitchinfo/5
+        [HttpPut("stitchinfo/{id}")]
         public async Task<IActionResult> PutStitchInfo(long id, StitchInfo stitchInfo)
         {
             try
@@ -113,8 +113,8 @@ namespace Zocoapi.server.Controllers
             
         }
 
-        // DELETE: api/Category/5
-        [HttpDelete("{id}")]
+        // DELETE: api/admin/stitchinfo/5
+        [HttpDelete("stitchinfo/{id}")]
         public async Task<IActionResult> DeleteStitchInfo(long id)
         {
             try
@@ -148,7 +148,8 @@ namespace Zocoapi.server.Controllers
         #region Contribution
 
 
-        [HttpGet]
+        // GET: api/admin/contribution
+        [HttpGet("contribution")]
         public async Task<ActionResult<IEnumerable<Contribution>>> GetContributions()
         {
             try
@@ -163,8 +164,8 @@ namespace Zocoapi.server.Controllers
 
         }
 
-        // GET: api/Category/5
-        [HttpGet("{id}")]
+        // GET: api/admin/contribution/5
+        [HttpGet("contribution/{id}")]
         public async Task<ActionResult<Contribution>> GetContributions(long id)
         {
             var stitchInfo = await _contriibutionContext.Contributions.FindAsync(id);
@@ -177,8 +178,8 @@ namespace Zocoapi.server.Controllers
             return stitchInfo;
         }
 
-        // POST: api/Category
-        [HttpPost]
+        // POST: api/admin/contribution
+        [HttpPost("contribution")]
         public async Task<ActionResult<Contribution>> PostContribution(Contribution stitchInfo)
         {
             try
@@ -200,8 +201,8 @@ namespace Zocoapi.server.Controllers
 
         }
 
-        // PUT: api/Category/5
-        [HttpPut("{id}")]
+        // PUT: api/admin/contribution/5
+        [HttpPut("contribution/{id}")]
         public async Task<IActionResult> PutContribution(long id, Contribution stitchInfo)
         {
             try
@@ -238,8 +239,8 @@ namespace Zocoapi.server.Controllers
             }
         }
 
-        // DELETE: api/Category/5
-        [HttpDelete("{id}")]
+        // DELETE: api/admin/contribution/5
+        [HttpDelete("contribution/{id}")]
         public async Task<IActionResult> DeleteContribution(long id)
         {
             try
@@ -270,7 +271,8 @@ namespace Zocoapi.server.Controllers
 
         #region ArticleInfo
 
-        [HttpGet]
+        // GET: api/admin/articleinfo
+        [HttpGet("articleinfo")]
         public async Task<ActionResult<IEnumerable<ArticleInfo>>> GetArticleInfos()
         {
             try
@@ -285,8 +287,8 @@ namespace Zocoapi.server.Controllers
 
         }
 
-        // GET: api/Category/5
-        [HttpGet("{id}")]
+        // GET: api/admin/articleinfo/5
+        [HttpGet("articleinfo/{id}")]
         public async Task<ActionResult<ArticleInfo>> GetArticleInfos(long id)
         {
             var stitchInfo = await _articleInfoContext.ArticleInfos.FindAsync(id);
@@ -299,8 +301,8 @@ namespace Zocoapi.server.Controllers
             return stitchInfo;
         }
 
-        // POST: api/Category
-        [HttpPost]
+        // POST: api/admin/articleinfo
+        [HttpPost("articleinfo")]
         public async Task<ActionResult<Contribution>> PostArticleInfo(ArticleInfo stitchInfo)
         {
             try
@@ -322,8 +324,8 @@ namespace Zocoapi.server.Controllers
 
         }
 
-        // PUT: api/Category/5
-        [HttpPut("{id}")]
+        // PUT: api/admin/articleinfo/5
+        [HttpPut("articleinfo/{id}")]
         public async Task<IActionResult> PutArticleInfo(long id, ArticleInfo stitchInfo)
         {
             try
@@ -360,8 +362,8 @@ namespace Zocoapi.server.Controllers
             }
         }
 
-        // DELETE: api/Category/5
-        [HttpDelete("{id}")]
+        // DELETE: api/admin/articleinfo/5
+        [HttpDelete("articleinfo/{id}")]
         public async Task<IActionResult> DeleteArticleInfo(long id)
         {
             try
