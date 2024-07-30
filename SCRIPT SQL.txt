@@ -52,3 +52,35 @@ INSERT INTO Products (Name, Description, Price, CategoryId)
 VALUES ('Aspiradora', 'Aspiradora sin bolsa', 149.99, 2);
 GO
 
+
+
+USE [TRSProd]
+GO
+
+/****** Object:  Table [dbo].[Contribution]    Script Date: 7/30/2024 4:23:11 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Contribution](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[StichId] [bigint] NULL,
+	[Needle] [decimal](18, 0) NULL,
+	[Bobbin] [decimal](18, 0) NULL,
+	[Cover] [decimal](18, 0) NULL,
+	[Total] [decimal](18, 0) NULL,
+	[Created] [datetime] NULL,
+	[Modified] [datetime] NULL,
+	[EditorId] [bigint] NULL,
+	[AuthorId] [bigint] NULL,
+ CONSTRAINT [PK_Contribution] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
